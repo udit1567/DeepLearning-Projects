@@ -8,17 +8,16 @@ from flask import Flask, request, render_template
 from PIL import Image
 import io
 import time
-
 import os
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
 
 app = Flask(__name__)
 
-# Define classes
+
 CLASS_NAMES = ['glioma', 'meningioma', 'notumor', 'pituitary']
 
-# Paragraph descriptions for each class
+#Descriptions for each class
 CLASS_INFO = {
     'glioma': '''Overview: Meningiomas arise from the meninges, the protective layers surrounding the brain and spinal cord. Most are benign but can still cause significant issues due to their size or location.
     Grades:
@@ -42,7 +41,7 @@ CLASS_INFO = {
     Treatment: Surgery, medication to control hormone levels, and sometimes radiation therapy.'''
 }
 
-# Load trained model
+# Loading trained model
 class CNN(nn.Module):
     def __init__(self, input_channels):
         super(CNN, self).__init__()
@@ -69,18 +68,18 @@ class CNN(nn.Module):
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = CNN(input_channels=3).to(device)
 
-# Load trained weights
+# Loading trained weights
 model.load_state_dict(torch.load("brain_tumor_model.pth", map_location=device))
 model.eval()
 
-# Image transformation
+# Image transformation to be applied before prediction
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
     transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 ])
 
-# Function to predict class
+# Function's to predict class
 def predict_class(image):
     image = transform(image).unsqueeze(0).to(device)
     output = model(image)
@@ -88,7 +87,7 @@ def predict_class(image):
     predicted_class = torch.argmax(probabilities).item()
     return CLASS_NAMES[predicted_class], probabilities.cpu().detach().numpy()
 
-# Generate histogram
+# Generate probability histogram
 def generate_histogram(probabilities):
     plt.figure(figsize=(6, 4))
     plt.bar(CLASS_NAMES, probabilities, color=['red', 'blue', 'green', 'purple'])
@@ -99,7 +98,7 @@ def generate_histogram(probabilities):
     plt.savefig("static/histogram.png")
     plt.close()
 
-# Flask routes
+# Flask route for the index page
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -112,7 +111,7 @@ def index():
             return render_template("index.html", error="No file selected.")
 
         image = Image.open(io.BytesIO(file.read())).convert("RGB")
-        image.save("static/uploaded_image.jpg")  # Save image for display
+        image.save("static/uploaded_image.jpg")
         predicted_class, probabilities = predict_class(image)
         confidence = round(np.max(probabilities) * 100, 2)
         processing_time = round(time.time() - start_time, 2)
