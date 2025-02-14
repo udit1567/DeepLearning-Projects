@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brain Tumor Detection Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --secondary: #50E3C2;
+            --text: #2C3E50;
+            --background: #f0f4f8;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--background);
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .result-header {
+            color: var(--text);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .image-card {
+            background: #F8FAFD;
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .image-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .diagnosis-box {
+            background: rgba(74,144,226,0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .tumor-type {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 0.5rem 0;
+        }
+
+        .confidence-meter {
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: var(--secondary);
+            width: {{ confidence }}%;
+            transition: width 0.5s ease;
+        }
+
+        .stats {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--background);
+            border-radius: 8px;
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 0.3rem 0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="result-header">Analysis Report</h1>
+        
+        <div class="grid">
+            <div class="image-card">
+                <h3>Uploaded MRI Scan</h3>
+                <img src="{{ image }}" alt="Processed MRI Image">
+            </div>
+
+            <div class="diagnosis-box">
+                <h2>Diagnosis Summary</h2>
+                <div class="tumor-type">{{ result }}</div>
+                <p>{{ description }}</p>
+                
+                <div class="confidence-meter">
+                    <div class="confidence-fill"></div>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div>Confidence</div>
+                        <div class="stat-value">{{ confidence }}%</div>
+                    </div>
+                    <div class="stat-item">
+                        <div>Processing Time</div>
+                        <div class="stat-value">{{ processing_time }}s</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-card">
+            <h3>Classification Probability Distribution</h3>
+            <img src="{{ histogram }}" alt="Prediction Histogram" style="max-width: 600px;">
+            <p>Model confidence distribution across different tumor types</p>
+        </div>
+
+        <br>
+        <a href="/" class="back-button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Upload New Scan
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brain Tumor Detection</title>
+    <style>
+        :root {
+            --primary: #4A90E2;
+            --success: #50E3C2;
+            --error: #FF4D4D;
+            --text: #2C3E50;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 90%;
+            margin-top: 5vh;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--text);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .upload-area {
+            border: 2px dashed #D1D8E6;
+            border-radius: 12px;
+            padding: 2.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: #F8FAFD;
+        }
+
+        .drag-active {
+            border-color: var(--primary) !important;
+            background: rgba(74,144,226,0.05) !important;
+        }
+
+        .file-added {
+            border-color: var(--success) !important;
+        }
+
+        .upload-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            color: var(--primary);
+            transition: transform 0.2s;
+        }
+
+        .upload-text {
+            color: #7F8FA4;
+            margin: 0.5rem 0;
+            transition: color 0.2s;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        .file-name {
+            color: var(--success);
+            font-weight: 600;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(80,227,194,0.1);
+            border-radius: 4px;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74,144,226,0.3);
+        }
+
+        .error-message {
+            color: var(--error);
+            background: #FFF2F2;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                width: 95%;
+                margin-top: 2vh;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Brain Tumor Detection Scan</h2>
+        
+        <div class="upload-area" id="upload-area">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <p class="upload-text">Drag & drop MRI image or click to upload</p>
+            <p class="upload-text" style="font-size: 0.9em">Supported formats: JPG, PNG, DICOM</p>
+            <div id="file-display" class="file-name"></div>
+        </div>
+
+        <form action="/" method="post" enctype="multipart/form-data">
+            <input type="file" id="file-input" name="file" accept="image/*,.dcm" required>
+            <button type="submit">Analyze Scan</button>
+        </form>
+
+        {% if error %}
+        <div class="error-message">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="var(--error)">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <span>{{ error }}</span>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('file-input');
+        const fileDisplay = document.getElementById('file-display');
+        const uploadArea = document.getElementById('upload-area');
+
+        // Click handler
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        // File input change handler
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            handleFileSelection(file);
+        });
+
+        // Drag & drop handlers
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-active');
+        });
+
+        ['dragleave', 'dragend'].forEach(type => {
+            uploadArea.addEventListener(type, (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('drag-active');
+            });
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            uploadArea.classList.remove('drag-active');
+
+            const files = e.dataTransfer.files;
+            if(files.length > 0) {
+                const file = files[0];
+                if(isValidFile(file)) {
+                    handleFileSelection(file);
+                    fileInput.files = files;
+                } else {
+                    showError('Invalid file type');
+                }
+            }
+        });
+
+        function handleFileSelection(file) {
+            if(file) {
+                fileDisplay.textContent = file.name;
+                uploadArea.classList.add('file-added');
+                uploadArea.classList.remove('drag-active');
+            }
+        }
+
+        function isValidFile(file) {
+            const validTypes = ['image/jpeg', 'image/png', 'application/dicom'];
+            return validTypes.includes(file.type) || 
+                   file.name.toLowerCase().endsWith('.dcm');
+        }
+
+        function showError(message) {
+            fileDisplay.textContent = message;
+            fileDisplay.style.color = 'var(--error)';
+            setTimeout(() => {
+                fileDisplay.textContent = '';
+                fileDisplay.style.color = '';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
