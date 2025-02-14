@@ -1,4 +1,4 @@
-# Brain Tumor Detection using CNN
+# 🧠 Brain Tumor Detection using CNN 🏥🔬
 
 ## Project Overview
 This project implements a **deep learning-based approach** for brain tumor classification using Convolutional Neural Networks (CNNs). The application is built using **Flask** to provide a web interface for users to upload MRI images and obtain predictions. The model classifies MRI scans into four categories:
