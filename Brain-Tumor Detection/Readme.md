@@ -92,6 +92,7 @@ The application will be available at **http://127.0.0.1:5000/**.
 
 
 📊 **Probability Histogram:**
+
 ![histogram](https://github.com/user-attachments/assets/10df8132-81ae-414c-ab96-6fd98f7e77cb)
 
 
