@@ -37,8 +37,7 @@ The CNN model comprises **three convolutional layers**, each followed by **ReLU 
   - `Linear(32, 4)` (Output Layer with 4 classes)
 
 - **Activation Functions:**
-  - ReLU for feature extraction layers
-  - Softmax for classification output
+  - ReLU for feature extraction layer
 
 ---
 
@@ -81,13 +80,16 @@ The application will be available at **http://127.0.0.1:5000/**.
 
 ## Screenshots
 🚀 **Flask Web Interface:**
-![Upload Page](#)
+![Screenshot 2025-02-14 164247](https://github.com/user-attachments/assets/4da62f41-0ac3-43ab-b1ab-d3cedad5795e)
+
 
 🎯 **Prediction Result:**
-![Prediction Page](#)
+![Screenshot 2025-02-14 164259](https://github.com/user-attachments/assets/13b1f5ba-0003-47ed-a7f8-b4d40e9b6e56)
+
 
 📊 **Probability Histogram:**
-![Histogram](#)
+![histogram](https://github.com/user-attachments/assets/10df8132-81ae-414c-ab96-6fd98f7e77cb)
+
 
 ---
 
