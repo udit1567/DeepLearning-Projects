@@ -31,9 +31,9 @@ The CNN model comprises **three convolutional layers**, each followed by **ReLU 
 
 - **Fully Connected Layers:**
   - Flatten layer
-  - `Linear(256*28*28, 128)` → `ReLU()` → `Dropout(0.3)`
-  - `Linear(128, 64)` → `ReLU()` → `Dropout(0.3)`
-  - `Linear(64, 32)` → `ReLU()` → `Dropout(0.3)`
+  - `Linear(256*28*28, 128)` → `ReLU()` → `Dropout(0.5)`
+  - `Linear(128, 64)` → `ReLU()` → `Dropout(0.4)`
+  - `Linear(64, 32)` → `ReLU()` → `Dropout(0.2)`
   - `Linear(32, 4)` (Output Layer with 4 classes)
 
 - **Activation Functions:**
@@ -73,7 +73,7 @@ The application will be available at **http://127.0.0.1:5000/**.
 
 ## Model Performance
 📊 **Accuracy:** 
-![image](https://github.com/user-attachments/assets/3f5cd7bd-d915-4686-b4f5-43317488470d)
+![image](https://github.com/user-attachments/assets/8274518b-8c33-4573-90ec-ff6826fecebe)
 
 📈 **Loss Curve:**
 ![Loss](https://github.com/user-attachments/assets/39e7bcb9-2b8b-42ac-9222-580ddab6f5a8)
