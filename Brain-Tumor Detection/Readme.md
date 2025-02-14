@@ -96,4 +96,8 @@ The application will be available at **http://127.0.0.1:5000/**.
 ![histogram](https://github.com/user-attachments/assets/10df8132-81ae-414c-ab96-6fd98f7e77cb)
 
 
+**Tensorboard plot:**
+![Screenshot 2025-02-14 174224](https://github.com/user-attachments/assets/a49f927a-354a-4125-a6fd-7c241758b770)
+
+
 
