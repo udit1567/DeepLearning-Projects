@@ -96,14 +96,4 @@ The application will be available at **http://127.0.0.1:5000/**.
 ![histogram](https://github.com/user-attachments/assets/10df8132-81ae-414c-ab96-6fd98f7e77cb)
 
 
----
-
-## Acknowledgments
-- Dataset provided by [Masoud Nickparvar](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
-- Inspired by deep learning medical imaging applications
-
----
-
-## License
-This project is open-source and available under the **MIT License**.
 
