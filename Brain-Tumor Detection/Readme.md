@@ -34,7 +34,7 @@ The CNN model comprises **three convolutional layers**, each followed by **ReLU 
   - `Linear(256*28*28, 128)` → `ReLU()` → `Dropout(0.5)`
   - `Linear(128, 64)` → `ReLU()` → `Dropout(0.4)`
   - `Linear(64, 32)` → `ReLU()` → `Dropout(0.2)`
-  - `Linear(32, 4)` (Output Layer with 4 classes)
+  - `Linear(32, 4)` (Output Layer with 4 classes : ['glioma', 'meningioma', 'notumor', 'pituitary'])
 
 - **Activation Functions:**
   - ReLU for feature extraction layer
