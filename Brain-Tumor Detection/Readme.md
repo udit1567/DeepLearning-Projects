@@ -72,9 +72,14 @@ The application will be available at **http://127.0.0.1:5000/**.
 ---
 
 ## Model Performance
-📊 **Accuracy:** (Add Test Accuracy Here)
-📈 **Loss Curve:** (Add Loss Curve Image Here)
-📉 **Accuracy Graph:** (Add Accuracy Graph Image Here)
+📊 **Accuracy:** 
+![image](https://github.com/user-attachments/assets/3f5cd7bd-d915-4686-b4f5-43317488470d)
+
+📈 **Loss Curve:**
+![Loss](https://github.com/user-attachments/assets/39e7bcb9-2b8b-42ac-9222-580ddab6f5a8)
+
+📉 **Accuracy Graph:**
+![Accuracy](https://github.com/user-attachments/assets/6a4fc2b0-ca32-48fc-bfa3-ffdc1edf641b)
 
 ---
 
