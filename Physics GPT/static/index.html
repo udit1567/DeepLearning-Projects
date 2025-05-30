@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Motion in Plane Q&A</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:600,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .container {
+      background: #ffffffcc;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      border-radius: 15px;
+      padding: 2.5rem 2rem 2rem 2rem;
+      margin-top: 8rem;
+      width: 100%;
+      max-width: 550px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #2d3a4b;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      border: none;
+      border-radius: 10px;
+      padding: 1rem;
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      background: #f5f8fa;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+      resize: vertical;
+      transition: box-shadow 0.2s;
+    }
+    textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #74ebd5;
+    }
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, #74ebd5 0%, #ACB6E5 100%);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      padding: 0.9rem 0;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.10);
+      transition: background 0.2s, transform 0.1s;
+      margin-bottom: 1.2rem;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #ACB6E5 0%, #74ebd5 100%);
+      transform: translateY(-2px) scale(1.01);
+    }
+    .answer-box {
+      width: 100%;
+      background: #f5f8fa;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(44, 62, 80, 0.08);
+      padding: 1.2rem 1rem;
+      min-height: 60px;
+      color: #2d3a4b;
+      font-size: 1.07rem;
+      margin-top: 0.5rem;
+      white-space: pre-line;
+      transition: box-shadow 0.2s;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin-top: 1.5rem;
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+      }
+      h1 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PhysicsQA-GPT</h1>
+    <textarea id="question" rows="3" placeholder="Type your question related to motion in plane..."></textarea>
+    <button onclick="sendQuestion()">Generate Answer</button>
+    <div class="answer-box" id="answer"></div>
+  </div>
+  <script>
+    async function sendQuestion() {
+      const question = document.getElementById("question").value.trim();
+      const answerDiv = document.getElementById("answer");
+      if (!question) {
+        answerDiv.innerText = "Please enter a question!";
+        return;
+      }
+      answerDiv.innerText = "Thinking...";
+      try {
+        const response = await fetch("http://127.0.0.1:8000/generate-answer", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question })
+        });
+        const data = await response.json();
+        answerDiv.innerText = data.answer || "No answer received.";
+      } catch (err) {
+        answerDiv.innerText = "Sorry, there was an error connecting to the server.";
+      }
+    }
+  </script>
+</body>
+</html>
