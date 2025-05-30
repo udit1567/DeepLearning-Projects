@@ -65,3 +65,9 @@ PhysicsQA-GPT is designed to help students master the concepts of "Motion in a P
 git clone <repo_url>
 cd physicsqa-gpt
 pip install -r requirements.txt
+
+![Screenshot 2025-05-30 103538](https://github.com/user-attachments/assets/da042d83-2a1f-49db-97c5-4f0d19205844)
+
+![Screenshot 2025-05-30 103448](https://github.com/user-attachments/assets/6763ab6b-c4d2-4f44-89b8-7e5095ddaf6d)
+
+
