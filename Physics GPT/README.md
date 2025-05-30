@@ -66,8 +66,10 @@ git clone <repo_url>
 cd physicsqa-gpt
 pip install -r requirements.txt
 
-![Screenshot 2025-05-30 103538](https://github.com/user-attachments/assets/da042d83-2a1f-49db-97c5-4f0d19205844)
 
-![Screenshot 2025-05-30 103448](https://github.com/user-attachments/assets/6763ab6b-c4d2-4f44-89b8-7e5095ddaf6d)
+![Screenshot 2025-05-30 103528](https://github.com/user-attachments/assets/07a5153c-e457-46c6-be08-80ac5587ffd0)
 
+
+![Screenshot 2025-05-30 103556](https://github.com/user-attachments/assets/0da63fd7-acc5-438c-89b9-92622bc6289f)
+![Screenshot 2025-05-30 103448](https://github.com/user-attachments/assets/a9626c2b-eb38-4693-9b3e-cbe92ee0f630)
 
