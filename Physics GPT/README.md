@@ -56,6 +56,11 @@ PhysicsQA-GPT is designed to help students master the concepts of "Motion in a P
 - Simple HTML interface for entering questions and displaying answers, served from the `/static` directory.
 
 ---
+![Screenshot 2025-05-30 103528](https://github.com/user-attachments/assets/07a5153c-e457-46c6-be08-80ac5587ffd0)
+
+
+![Screenshot 2025-05-30 103556](https://github.com/user-attachments/assets/0da63fd7-acc5-438c-89b9-92622bc6289f)
+![Screenshot 2025-05-30 103448](https://github.com/user-attachments/assets/a9626c2b-eb38-4693-9b3e-cbe92ee0f630)
 
 ## 🚀 Usage
 
@@ -67,9 +72,5 @@ cd physicsqa-gpt
 pip install -r requirements.txt
 
 
-![Screenshot 2025-05-30 103528](https://github.com/user-attachments/assets/07a5153c-e457-46c6-be08-80ac5587ffd0)
 
-
-![Screenshot 2025-05-30 103556](https://github.com/user-attachments/assets/0da63fd7-acc5-438c-89b9-92622bc6289f)
-![Screenshot 2025-05-30 103448](https://github.com/user-attachments/assets/a9626c2b-eb38-4693-9b3e-cbe92ee0f630)
 
