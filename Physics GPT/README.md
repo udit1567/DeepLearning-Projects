@@ -1,28 +1,51 @@
-# PhysicsQA-GPT: A Transformer-based Q&A Model on Motion in a Plane (Class 11 Physics)
+# 📘 PhysicsQA-GPT: Transformer-Based Q&A Model for "Motion in a Plane" (Class 11 Physics)
 
-This is a Transformer-based **Question-Answering (QA) bot** trained specifically on the **"Motion in a Plane"** chapter from Class 11 Physics. The bot is capable of understanding natural language questions related to the chapter and generating contextually relevant answers using a Decoder-Only Transformer architecture.
+**PhysicsQA-GPT** is a domain-specific Question-Answering (QA) bot focused exclusively on the *"Motion in a Plane"* chapter from Class 11 Physics. Built using a custom **Decoder-Only Transformer** architecture, the system provides accurate, context-aware answers to user questions, leveraging a tailored vocabulary and tokenizer.
+
+The project is implemented in **PyTorch** and deployed using **FastAPI**, with an interactive web frontend.
 
 ---
 
-## 📘 Project Overview
+## 🚀 Project Overview
 
-This project uses a custom-trained transformer model to generate physics answers based on a trained vocabulary. It has been built using **PyTorch** for the model and **FastAPI** for deploying the API. The frontend is a simple static HTML interface served via FastAPI.
+PhysicsQA-GPT is designed to help students master the concepts of *Motion in a Plane*, including vectors, projectile motion, and two-dimensional kinematics. It uses a deep learning model trained on curated QA pairs, offering fast and relevant responses to natural language queries.
+
+### ✅ Key Learning Areas Covered
+
+- Vectors and their resolution in a plane  
+- Scalar and vector quantities  
+- Equations of motion in two dimensions  
+- Projectile motion and uniform circular motion  
+- Application of Newton’s laws in a plane  
 
 ---
 
 ## 🧠 Key Features
 
-- ⚙️ **Custom-built Transformer** (Decoder-Only) trained on chapter-wise QA pairs.
-- 📚 **Domain-specific**: Focused on "Motion in a Plane" from Class 11 NCERT Physics.
-- 🔤 **Custom tokenizer and vocabulary** using special tokens (`<PAD>`, `<BOS>`, `<EOS>`, `<SEP>`).
-- 🚀 **FastAPI-based REST API** to generate answers to user questions.
-- 🖥️ **Interactive frontend** served via `/` endpoint.
+- **Custom Decoder-Only Transformer**  
+  6-layer, 8-head attention model trained on chapter-specific QA data.
+
+- **Domain-Specific Knowledge**  
+  Focused solely on *Motion in a Plane* (Class 11 Physics).
+
+- **Custom Tokenizer & Vocabulary**  
+  Special tokens (`<PAD>`, `<BOS>`, `<EOS>`, `<SEP>`) for efficient sequence processing.
+
+- **REST API with FastAPI**  
+  Exposes endpoints for answer generation and serves a static HTML frontend.
+
+- **Interactive Frontend**  
+  Simple web interface for user interaction.
 
 ---
 
 ## 🏗️ Model Architecture
 
-- **Embedding Layer**: Word + Positional Embeddings
-- **Transformer Encoder Stack**: 6 layers, 8 attention heads
-- **Output Layer**: Linear layer projecting to vocabulary size
-- **Input Format**: 
+| Component           | Description |
+|---------------------|-------------|
+| Embedding Layer     | Word and positional embeddings for input tokens |
+| Transformer Encoder | 6 stacked layers, 8 attention heads, masked self-attention, and feed-forward networks |
+| Output Layer        | Linear projection to vocabulary size |
+| Special Tokens      | `<PAD>`, `<BOS>`, `<EOS>`, `<SEP>` for sequence control |
+
+### Input Format:
