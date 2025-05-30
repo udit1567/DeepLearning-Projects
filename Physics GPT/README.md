@@ -1,4 +1,4 @@
-# 🤖 Physics QA Bot – Motion in a Plane (Class 11)
+# PhysicsQA-GPT: A Transformer-based Q&A Model on Motion in a Plane (Class 11 Physics)
 
 This is a Transformer-based **Question-Answering (QA) bot** trained specifically on the **"Motion in a Plane"** chapter from Class 11 Physics. The bot is capable of understanding natural language questions related to the chapter and generating contextually relevant answers using a Decoder-Only Transformer architecture.
 
