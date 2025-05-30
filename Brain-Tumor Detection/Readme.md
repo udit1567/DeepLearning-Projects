@@ -77,7 +77,7 @@ The application will be available at **http://127.0.0.1:5000/**.
 
 
 
-📉 **LossAccuracy & 📈 Accuracy Curve:**
+📉 **Loss & 📈 Accuracy Curve:**
 ![Accuracy](https://github.com/user-attachments/assets/6a4fc2b0-ca32-48fc-bfa3-ffdc1edf641b)
 
 ---
